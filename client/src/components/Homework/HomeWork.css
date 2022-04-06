@@ -1,0 +1,63 @@
+.box1 {
+  padding: 15px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.box1 h1 {
+  font-size: 1.4em;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.homework-header{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.homework-header button{
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 1.8rem;
+}
+
+.Subject {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  margin-bottom: 25px;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: gray;
+}
+
+.Subject h2 {
+  font-size: 1.4em;
+  color: black;
+  margin: 0;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.timing1 p {
+  margin: 0;
+}

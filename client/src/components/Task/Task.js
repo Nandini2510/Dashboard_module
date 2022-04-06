@@ -1,0 +1,133 @@
+import { useState, useEffect, useContext } from 'react';
+import axios from '../../axios/axios';
+import SingleTask from './SingleTask';
+import Loader from '../Loader/Loader';
+import { IoAdd, IoCloseOutline, IoWarningOutline } from 'react-icons/io5';
+import './Task.css';
+import { taskData } from './TaskData';
+//import UserContext from '../../context/authContext';
+
+const Task = ({ user }) => {
+	const [tasks, setTasks] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
+	const [showInput, setShowInput] = useState(false);
+	const [isError, setIsError] = useState(false);
+	const [newTask, setNewTask] = useState('');
+	const [dueDate, setDueDate] = useState('');
+	//const { userDetails } = useContext(UserContext);
+
+	const fetchTasks = async () => {
+		try {
+			const { data } = await axios.get(`/tasks`);
+			console.log(data);
+			setTasks(data);
+			setIsLoading(false);
+		} catch (err) {
+			console.log(err.message);
+		}
+	};
+
+	useEffect(() => {
+		fetchTasks();
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const addTodo = async (e) => {
+		e.preventDefault();
+		setIsLoading(true);
+		try {
+			if (tasks.length === 10) {
+				alert("You can't add more than 10 tasks");
+			} else {
+				if (newTask.length > 0 && dueDate) {
+					const { data } = await axios.post('/tasks', {
+						title: newTask,
+						dueDate: dueDate,
+						isComplete: false,
+					});
+					setTasks([...tasks, data]);
+					setNewTask('');
+					setDueDate('');
+					setShowInput(false);
+					fetchTasks();
+				} else {
+					setIsError(true);
+				}
+			}
+		} catch (err) {
+			console.log(err.message);
+		}
+		setIsLoading(false);
+	};
+
+	useEffect(() => {
+		const error = setTimeout(() => {
+			setIsError(false);
+		}, 3000);
+		return () => clearTimeout(error, 3000);
+	}, [isError]);
+
+	return (
+		<div className="Tasks">
+			{isLoading && (
+				<div className="loading-div">
+					<Loader />
+				</div>
+			)}
+			<div className="task-header">
+				<h1>Tasks</h1>
+				<button onClick={() => setShowInput(!showInput)}>
+					{showInput ? <IoCloseOutline /> : <IoAdd />}
+				</button>
+			</div>
+			{tasks?.length === 0 && (
+				<p className="no-task">You haven't added any task</p>
+			)}
+			<div className="Tasks-main-div">
+				{showInput && (
+					<div className="add-newtask">
+						<form onSubmit={addTodo}>
+							<input
+								type="text"
+								placeholder="Add New Task"
+								value={newTask}
+								onChange={(e) => setNewTask(e.target.value)}
+							/>
+							<input
+								type="date"
+								value={dueDate}
+								onChange={(e) => setDueDate(e.target.value)}
+							/>
+							{isError && (
+								<div className="error">
+									<IoWarningOutline />
+									<h3>All fields must be filled</h3>
+								</div>
+							)}
+							<button type="submit">Add</button>
+						</form>
+					</div>
+				)}
+				{isLoading ? (
+					<Loader />
+				) : (
+					<div className="tasks">
+						{tasks?.map((task) => (
+							<SingleTask
+								key={task._id}
+								{...task}
+								tasks={tasks}
+								setTasks={setTasks}
+								fetchTasks={fetchTasks}
+								user={user}
+							/>
+						))}
+					</div>
+				)}
+			</div>
+		</div>
+	);
+};
+
+export default Task;

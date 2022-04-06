@@ -1,0 +1,143 @@
+.Leaderboard {
+  padding: 15px;
+}
+.leaderboard-main-div {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.leaderboard-students {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 290px;
+  padding: 5px 0;
+  background-color: #fff;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.leaderboard-students::-webkit-scrollbar {
+  width: 0;
+}
+
+.Leaderboard .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
+
+.Leaderboard .header select {
+  width: 100px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background: #f1f1f1;
+  padding: 5px;
+  font-weight: 600;
+  margin: 0;
+}
+.Leaderboard .header select:focus {
+  border: 0.5px solid blue;
+}
+
+.leaderboard-header{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.leaderboard-header button{
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 1.8rem;
+}
+
+.Leaderboard .Student {
+  width: 100%;
+  align-items: center;
+
+}
+
+.Leaderboard .title {
+  display: flex;
+  align-items: center;
+  background-color: #f3f3f3;
+  padding: 10px 10px 10px 15px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.Leaderboard .title h2:first-child,
+.Leaderboard .title h2:last-child {
+  flex: 1;
+}
+.Leaderboard .title h2:nth-child(2) {
+  flex: 3;
+}
+
+.Leaderboard .Student {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  position:relative;
+}
+
+.Leaderboard .Student h3:first-child,
+.Leaderboard .Student h3:last-child {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+}
+.Leaderboard .Student .name {
+  flex: 3;
+  padding: 10px 0;
+}
+.Leaderboard .Student .name {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.Leaderboard .Student .name h3 {
+  text-align: left;
+  margin-left: 5px;
+}
+
+.Leaderboard .Student h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 0;
+}
+
+.Leaderboard .Student .edit_button {
+ padding: .5rem;
+ background-color: #f1f1f1;
+ border:none;
+ outline: none;
+ width: 2rem;
+ height: 2rem;
+ border-radius: 9999px ;
+ margin: 0 5px;
+ cursor: pointer;
+}
+
+.Leaderboard .Student .edit_menu {
+  position: absolute;
+  left: 100%;
+  top: 20px;
+}
